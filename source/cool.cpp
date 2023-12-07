@@ -19,7 +19,9 @@ public:
 
   Cool(string name, int fishPoints) {
     this->name = name;
-    this->fish = unique_ptr<Fish>(new Fish(fishPoints));
+    if (fishPoints > 0) {
+      this->fish = unique_ptr<Fish>(new Fish(fishPoints));
+    }
 
     println("Constructor called");
   }
