@@ -1,6 +1,8 @@
 #include <iostream>
-// #include <print>
+#include "fmt/core.h"
+
+// using namespace fmt;
 
 int main() {
-  std::cout << __cplusplus << '\n';
+  //  println("Hello world!");
 }
