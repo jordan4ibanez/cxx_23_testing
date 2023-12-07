@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20.4)
 
-# set(CMAKE_C_COMPILER "/usr/bin/gcc")
-# set(CMAKE_CXX_COMPILER "/usr/bin/g++")
+# set(CMAKE_C_COMPILER "/usr/bin/clang")
+# set(CMAKE_CXX_COMPILER "/usr/bin/clang++")
 
 set (CMAKE_CXX_STANDARD 23)
 set (CMAKE_CXX_STANDARD_REQUIRED 23)
@@ -10,8 +10,8 @@ set (CMAKE_CXX_STANDARD_REQUIRED ON)
 # set(CMAKE_EXE_FLAGS "-fmodules-ts=true -std=c++23")
 # set(CMAKE_EXE_LINKER_FLAGS "-fmodules-ts=true")
 
-set(CXXFLAGS "-std=c++23 -fmodules-ts")
-set(CMAKE_CXX_FLAGS "${CXXFLAGS}")
+# set(CXXFLAGS "-std=c++23 -fmodules-ts")
+# set(CMAKE_CXX_FLAGS "${CXXFLAGS}")
 
 project(
   cool
@@ -20,19 +20,22 @@ project(
 )
 
 
-include_directories(
-  lib
-)
+# include_directories(
+#   lib
+# )
 
-add_subdirectory(
-  lib/fmt
-)
+# add_subdirectory(
+#   lib/fmt
+# )
 
-add_executable(cool source/main.cpp)
+add_library(test source/test/test.cc)
+# add_library(fmt lib/fmt)
 
-target_compile_features(cool PUBLIC cxx_std_23)
+# add_executable(cool source/main.cpp)
 
-target_link_libraries(cool PRIVATE fmt::fmt)
+# target_compile_features(cool PUBLIC cxx_std_23)
+
+# target_link_libraries(cool PRIVATE fmt)
 
 # set_target_properties(
 #   cool PROPERTIES
