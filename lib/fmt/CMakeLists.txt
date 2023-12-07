@@ -190,7 +190,6 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
   "${CMAKE_CURRENT_SOURCE_DIR}/support/cmake")
 
 include(CheckCXXCompilerFlag)
-include(JoinPaths)
 
 if (FMT_MASTER_PROJECT AND NOT DEFINED CMAKE_CXX_VISIBILITY_PRESET)
   set_verbose(CMAKE_CXX_VISIBILITY_PRESET hidden CACHE STRING
@@ -365,18 +364,6 @@ if (FMT_INSTALL)
     VERSION ${FMT_VERSION}
     COMPATIBILITY AnyNewerVersion)
 
-  join_paths(libdir_for_pc_file "\${exec_prefix}" "${FMT_LIB_DIR}")
-  join_paths(includedir_for_pc_file "\${prefix}" "${FMT_INC_DIR}")
-
-  configure_file(
-    "${PROJECT_SOURCE_DIR}/support/cmake/fmt.pc.in"
-    "${pkgconfig}"
-    @ONLY)
-  configure_package_config_file(
-    ${PROJECT_SOURCE_DIR}/support/cmake/fmt-config.cmake.in
-    ${project_config}
-    INSTALL_DESTINATION ${FMT_CMAKE_DIR})
-
   set(INSTALL_TARGETS fmt fmt-header-only)
 
   # Install the library and headers.
@@ -399,27 +386,6 @@ if (FMT_INSTALL)
           NAMESPACE fmt::)
 
   install(FILES "${pkgconfig}" DESTINATION "${FMT_PKGCONFIG_DIR}")
-endif ()
-
-if (FMT_DOC)
-  add_subdirectory(doc)
-endif ()
-
-if (FMT_TEST)
-  enable_testing()
-  add_subdirectory(test)
-endif ()
-
-# Control fuzzing independent of the unit tests.
-if (FMT_FUZZ)
-  add_subdirectory(test/fuzzing)
-
-  # The FMT_FUZZ macro is used to prevent resource exhaustion in fuzzing
-  # mode and make fuzzing practically possible. It is similar to
-  # FUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION but uses a different name to
-  # avoid interfering with fuzzing of projects that use {fmt}.
-  # See also https://llvm.org/docs/LibFuzzer.html#fuzzer-friendly-build-mode.
-  target_compile_definitions(fmt PUBLIC FMT_FUZZ)
 endif ()
 
 set(gitignore ${PROJECT_SOURCE_DIR}/.gitignore)
