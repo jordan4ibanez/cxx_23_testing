@@ -19,7 +19,7 @@ add_subdirectory(
 
 add_executable(cool source/main.cpp)
 
-target_link_libraries(cool PRIVATE fmt::fmt-header-only)
+target_link_libraries(cool PRIVATE fmt::fmt)
 
 set_target_properties(
   cool PROPERTIES
