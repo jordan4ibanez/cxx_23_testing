@@ -1,8 +1,10 @@
 #include <iostream>
 #include "fmt/core.h"
 
-// using namespace fmt;
+using namespace fmt;
 
 int main() {
-  //  println("Hello world!");
+  const float testing = 1.2345999f;
+   println("Hello world!{} {} {} {} {}", "this", "is", "multiple", "inputs", testing);
+   println("ye ye ye");
 }
