@@ -1,6 +1,9 @@
+import Test;
 
-#include <iostream>
+#include "fmt/format.h"
+
+using namespace fmt;
 
 int main() {
-
+  println("hello there");
 }
