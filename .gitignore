@@ -5,5 +5,8 @@ CMakeCache.txt
 Makefile
 build/*
 
+/lib/fmt
+
 cool
 cool.exe
+
